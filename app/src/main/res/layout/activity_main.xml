@@ -58,7 +58,7 @@
         android:padding="20dp"
         android:textAllCaps="false"
         android:textSize="10sp"
-        android:text="Already Have An Account?"
+        android:text="Join Now"
         android:textColor="@android:color/white"
         />
 
