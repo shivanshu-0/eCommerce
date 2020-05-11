@@ -89,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                         loadingBar.dismiss();
                                         Intent intent= new Intent(RegisterActivity.this,LoginActivity.class);
+                                        startActivity(intent);
                                     }
                                     else{
                                         loadingBar.dismiss();
