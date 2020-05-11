@@ -14,11 +14,15 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ecommerce.Model.Users;
+import com.example.ecommerce.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rey.material.widget.CheckBox;
+
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button LoginButton;
     private ProgressDialog loadingBar;
     private String parentDbName="Users";
+    private CheckBox chkBoxRememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                 LogInUser();
             }
         });
+        chkBoxRememberMe=(CheckBox) findViewById(R.id.remember_me_chkb);
+        Paper.init(this);
 
     }
 
@@ -56,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Please Write Your Password", Toast.LENGTH_SHORT).show();
         }
         else{
-            loadingBar.setTitle("Create Account");
+            loadingBar.setTitle("Login Account");
             loadingBar.setMessage("Please Wait while credentials are checked");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
@@ -66,6 +73,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void AllowAccessToAccout(final String phone, final String password) {
+
+        if(chkBoxRememberMe.isChecked()){
+            Paper.book().write(Prevalent.UserPhoneKey,phone);
+            Paper.book().write(Prevalent.UserPasswordKey,password);
+        }
+
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
