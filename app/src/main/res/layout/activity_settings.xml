@@ -72,7 +72,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="4dp"
         android:layout_below="@+id/settings_profile_image"
-        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         />
 
     <EditText
