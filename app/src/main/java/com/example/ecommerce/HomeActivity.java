@@ -3,8 +3,12 @@ package com.example.ecommerce;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.ecommerce.Model.Products;
 import com.example.ecommerce.Prevalent.Prevalent;
 
+import com.example.ecommerce.ViewHolder.ProductViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,6 +27,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -40,10 +45,21 @@ import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private DatabaseReference ProductRef;
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        ProductRef=FirebaseDatabase.getInstance().getReference().child("Products");
+        recyclerView=findViewById(R.id.recycler_menu);
+        recyclerView.setHasFixedSize(true);
+        layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         Paper.init(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -68,8 +84,46 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View headerView=navigationView.getHeaderView(0);
+        TextView userNameTextView=headerView.findViewById(R.id.user_profile_name);
+        CircleImageView profileImageView=headerView.findViewById(R.id.user_profile_image);
+
+        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
+
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerOptions<Products> options=
+                new FirebaseRecyclerOptions.Builder<Products>()
+                .setQuery(ProductRef,Products.class)
+                .build();
+
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter=
+                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
+
+                        productViewHolder .textProductName.setText(products.getPname());
+                        productViewHolder .textProductDescription.setText(products.getDescription());
+                        productViewHolder .textProductPrice.setText("Price: "+products.getPrice() + "$");
+                        Picasso.get().load(products.getImage()).into(productViewHolder.imageView);
+
+                    }
+                    @NonNull
+                    @Override
+                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_product_item,parent,false);
+                        ProductViewHolder holder=new ProductViewHolder(view);
+                        return holder;
+                    }
+                };
+
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+    }
 
     @Override
     public void onBackPressed() {
