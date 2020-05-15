@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                 LogInUser();
             }
         });
+
         AdminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
             loadingBar.setMessage("Please Wait while credentials are checked");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-
             AllowAccessToAccount(phone,password);
         }
     }
@@ -101,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
             Paper.book().write(Prevalent.UserPhoneKey,phone);
             Paper.book().write(Prevalent.UserPasswordKey,password);
         }
-
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -110,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child(parentDbName).child(phone).exists()){
                     Users userData=dataSnapshot.child(parentDbName).child(phone).getValue(Users.class);
-
                     if(userData.getPhone().equals(phone)){
                         if(userData.getPassword().equals(password)){
                             if(parentDbName.equals("Admins")){
@@ -122,7 +120,9 @@ public class LoginActivity extends AppCompatActivity {
                             else if(parentDbName.equals("Users")){
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
+
                                 Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+                                Prevalent.currentOnlineUser=userData;
                                 startActivity(intent);
                             }
 
