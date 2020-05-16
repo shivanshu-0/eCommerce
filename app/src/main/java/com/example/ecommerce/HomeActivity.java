@@ -104,12 +104,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
+                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final Products products) {
 
                         productViewHolder .textProductName.setText(products.getPname());
                         productViewHolder .textProductDescription.setText(products.getDescription());
                         productViewHolder .textProductPrice.setText("Price: "+products.getPrice() + "$");
                         Picasso.get().load(products.getImage()).into(productViewHolder.imageView);
+
+                        productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent=new Intent(HomeActivity.this,ProductDetailsActivity.class);
+                                intent.putExtra("pid",products.getPid());
+                                startActivity(intent);
+                            }
+                        });
 
                     }
                     @NonNull
