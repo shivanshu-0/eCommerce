@@ -33,6 +33,7 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Button nextProcessBtn;
     private TextView textTotalAmount;
+    private int overallTotalPrice=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +47,24 @@ public class CartActivity extends AppCompatActivity {
 
         nextProcessBtn=(Button) findViewById(R.id.next_process_btn);
         textTotalAmount=(TextView) findViewById(R.id.total_price);
+
+        nextProcessBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(CartActivity.this,ConfirmFinalOrderActivity.class);
+                intent.putExtra("Total Price",String.valueOf(overallTotalPrice));
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        textTotalAmount.setText("Total Price : "+String.valueOf(overallTotalPrice));
 
         final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("CArt List");
         FirebaseRecyclerOptions<Cart> options=new FirebaseRecyclerOptions.Builder<Cart>()
@@ -66,6 +80,9 @@ public class CartActivity extends AppCompatActivity {
                 cartViewHolder.txtProductQuantity.setText("Quantity: "+cart.getQuantity());
                 cartViewHolder.txtProductPrice.setText("Price: "+cart.getPrice()+"$");
                 cartViewHolder.txtProductName.setText(cart.getPname());
+
+                int oneTypeProductTPrice=((Integer.valueOf(cart.getPrice()))*(Integer.valueOf(cart.getQuantity())));
+                overallTotalPrice=overallTotalPrice+oneTypeProductTPrice;
 
                 cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
