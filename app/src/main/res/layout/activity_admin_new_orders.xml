@@ -33,18 +33,6 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/show_all_products_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/order_date_time"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/white"
-        android:text="Show This Order Products"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
-        />
+
 
 </RelativeLayout>

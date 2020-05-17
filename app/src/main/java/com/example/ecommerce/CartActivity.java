@@ -55,22 +55,20 @@ public class CartActivity extends AppCompatActivity {
         nextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                textTotalAmount.setText("Total Price : "+String.valueOf(overallTotalPrice));
                 Intent intent=new Intent(CartActivity.this,ConfirmFinalOrderActivity.class);
                 intent.putExtra("Total Price",String.valueOf(overallTotalPrice));
                 startActivity(intent);
                 finish();
             }
         });
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         checkOrderState();
-        textTotalAmount.setText("Total Price : "+String.valueOf(overallTotalPrice));
+
 
         final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("CArt List");
         FirebaseRecyclerOptions<Cart> options=new FirebaseRecyclerOptions.Builder<Cart>()
