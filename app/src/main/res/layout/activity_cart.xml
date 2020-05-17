@@ -26,6 +26,19 @@
         
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/msg1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:text="Congratulations! Your Final Order Has Been Placed Succesfully. Soon it will be verified"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_list"
         android:layout_width="match_parent"
