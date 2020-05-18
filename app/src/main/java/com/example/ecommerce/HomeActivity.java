@@ -3,6 +3,7 @@ package com.example.ecommerce;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.ecommerce.Admin.AdminMaintainProductsActivity;
 import com.example.ecommerce.Model.Products;
 import com.example.ecommerce.Prevalent.Prevalent;
 
@@ -10,7 +11,6 @@ import com.example.ecommerce.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,10 +19,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
@@ -126,7 +122,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onClick(View v) {
                                 if(type.equals("Admin")){
-                                    Intent intent=new Intent(HomeActivity.this,AdminMaintainProductsActivity.class);
+                                    Intent intent=new Intent(HomeActivity.this, AdminMaintainProductsActivity.class);
                                     intent.putExtra("pid",products.getPid());
                                     startActivity(intent);
                                 }

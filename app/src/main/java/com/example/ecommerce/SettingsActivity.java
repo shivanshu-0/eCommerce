@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,8 @@ public class SettingsActivity extends AppCompatActivity {
     private StorageTask uploadTask;
     private StorageReference storageProfilePictureRef;
     private String checker="";
+    private Button securityQuesBtn;
+
 
 
     @Override
@@ -59,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
         profileChangeText=(TextView) findViewById(R.id.profile_image_change_btn);
         closeText=(TextView) findViewById(R.id.close_settings_btn);
         saveText=(TextView) findViewById(R.id.update_settings_btn);
-
+        securityQuesBtn=(Button) findViewById(R.id.security_question_btn);
 
 
         userInfoDisplay(profileImageView,fullNameEditText,userPhoneEditText,addressEditText);
@@ -89,6 +92,15 @@ public class SettingsActivity extends AppCompatActivity {
                 checker="clicked";
                 CropImage.activity(imageUri).setAspectRatio(1,1)
                         .start(SettingsActivity.this);
+            }
+        });
+
+        securityQuesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SettingsActivity.this,ResetPasswordActivity.class);
+                intent.putExtra("check","settings");
+                startActivity(intent);
             }
         });
     }
