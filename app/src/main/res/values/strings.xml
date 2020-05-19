@@ -13,4 +13,8 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+    <string name="title_activity_seller_home">SellerHomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_add">Add Product</string>
+    <string name="title_logout">Logout</string>
 </resources>
