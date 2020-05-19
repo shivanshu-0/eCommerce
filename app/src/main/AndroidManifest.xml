@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ecommerce" >
+    package="com.example.ecommerce">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -11,11 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".Admin.AdminCheckNewProductsActivity"></activity>
+        <activity android:name=".Admin.AdminHomeActivity" />
         <activity
             android:name=".Seller.SellerHomeActivity"
-            android:label="@string/title_activity_seller_home" >
-        </activity>
+            android:label="@string/title_activity_seller_home" />
         <activity android:name=".Seller.SellerLoginActivity" />
         <activity android:name=".Seller.SellerRegistrationActivity" />
         <activity android:name=".Buyer.ResetPasswordActivity" />
@@ -35,7 +36,7 @@
         <activity android:name=".Seller.SellerAddNewProductActivity" />
         <activity android:name=".Buyer.RegisterActivity" />
         <activity android:name=".Buyer.LoginActivity" />
-        <activity android:name=".Buyer.MainActivity" >
+        <activity android:name=".Buyer.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
