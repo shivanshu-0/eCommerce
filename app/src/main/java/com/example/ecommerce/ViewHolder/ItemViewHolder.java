@@ -12,7 +12,7 @@ import com.example.ecommerce.R;
 
 public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView textProductName, textProductDescription, textProductPrice,textProductStatus;
+    public TextView textProductName, textProductDescription, textProductPrice, textProductStatus;
     public ImageView imageView;
     public ItemClickListener listner;
 

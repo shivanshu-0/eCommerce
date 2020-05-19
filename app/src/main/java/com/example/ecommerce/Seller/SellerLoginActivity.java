@@ -17,7 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SellerLoginActivity extends AppCompatActivity {
+ public class SellerLoginActivity extends AppCompatActivity {
+
 
     private Button loginSellerButton;
     private EditText emailInput, passwordInput;
@@ -64,9 +65,9 @@ public class SellerLoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Intent intent=new Intent(SellerLoginActivity.this, SellerHomeActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish();
+                       // finish();
                     }
                 }
             });

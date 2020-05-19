@@ -55,6 +55,7 @@ public class SellerHomeActivity extends AppCompatActivity {
                     return true;
 
 
+
                 case R.id.navigation_add:
                     Intent intentCat=new Intent(SellerHomeActivity.this, SellerProductCategoryActivity.class);
                     startActivity(intentCat);
@@ -97,18 +98,17 @@ public class SellerHomeActivity extends AppCompatActivity {
         super.onStart();
         FirebaseRecyclerOptions<Products> options=
                 new FirebaseRecyclerOptions.Builder<Products>()
-                        .setQuery(unverifiedProductsRef.orderByChild("sid")
-                                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid()),Products.class)
+                        .setQuery(unverifiedProductsRef.orderByChild("sellerID").equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid()),Products.class)
                         .build();
 
         FirebaseRecyclerAdapter<Products, ItemViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Products, ItemViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ItemViewHolder productViewHolder, int i, @NonNull final Products products) {
-                        productViewHolder .textProductName.setText(products.getPname());
-                        productViewHolder .textProductDescription.setText(products.getDescription());
-                        productViewHolder .textProductStatus.setText("State: " +products.getProductState());
-                        productViewHolder .textProductPrice.setText("Price: "+products.getPrice() + "$");
+                        productViewHolder.textProductName.setText(products.getPname());
+                        productViewHolder.textProductDescription.setText(products.getDescription());
+                        productViewHolder.textProductStatus.setText("State: " +products.getProductState());
+                        productViewHolder.textProductPrice.setText("Price: "+products.getPrice() + "$");
                         Picasso.get().load(products.getImage()).into(productViewHolder.imageView);
 
                         productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
