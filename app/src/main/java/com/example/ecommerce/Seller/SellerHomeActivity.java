@@ -32,7 +32,8 @@ public class SellerHomeActivity extends AppCompatActivity {
 
 
                 case R.id.navigation_add:
-                    mTextMessage.setText(R.string.title_add);
+                    Intent intentCat=new Intent(SellerHomeActivity.this, SellerProductCategoryActivity.class);
+                    startActivity(intentCat);
                     return true;
 
 
@@ -41,9 +42,9 @@ public class SellerHomeActivity extends AppCompatActivity {
                     mAuth=FirebaseAuth.getInstance();
                     mAuth.signOut();
 
-                    Intent intent=new Intent(SellerHomeActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    Intent intentMain=new Intent(SellerHomeActivity.this, MainActivity.class);
+                    intentMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentMain);
                     finish();
                     return true;
             }

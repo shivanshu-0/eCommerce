@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ecommerce.R;
+import com.example.ecommerce.Seller.SellerProductCategoryActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -73,7 +74,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                Intent intent=new Intent(AdminMaintainProductsActivity.this,AdminCategoryActivity.class);
+                Intent intent=new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
                 startActivity(intent);
                 finish();
                 Toast.makeText(AdminMaintainProductsActivity.this, "Product is deleted successfully", Toast.LENGTH_SHORT).show();
@@ -107,7 +108,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(AdminMaintainProductsActivity.this, "Changes applied successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(AdminMaintainProductsActivity.this,AdminCategoryActivity.class);
+                        Intent intent=new Intent(AdminMaintainProductsActivity.this, SellerProductCategoryActivity.class);
                         startActivity(intent);
                         finish();
                     }
