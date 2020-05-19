@@ -1,4 +1,4 @@
-package com.example.ecommerce;
+package com.example.ecommerce.Buyer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import com.example.ecommerce.Admin.AdminMaintainProductsActivity;
 import com.example.ecommerce.Model.Products;
 import com.example.ecommerce.Prevalent.Prevalent;
 
+import com.example.ecommerce.R;
 import com.example.ecommerce.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

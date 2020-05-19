@@ -12,24 +12,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ResetPasswordActivity"></activity>
+        <activity android:name=".Seller.SellerLoginActivity"></activity>
+        <activity android:name=".Seller.SellerRegistrationActivity" />
+        <activity android:name=".Buyer.ResetPasswordActivity" />
         <activity android:name=".Admin.AdminMaintainProductsActivity" />
-        <activity android:name=".SearchProductsActivity" />
+        <activity android:name=".Buyer.SearchProductsActivity" />
         <activity android:name=".Admin.AdminUserProductsActivity" />
         <activity android:name=".Admin.AdminNewOrdersActivity" />
-        <activity android:name=".ConfirmFinalOrderActivity" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".ProductDetailsActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".Buyer.ConfirmFinalOrderActivity" />
+        <activity android:name=".Buyer.CartActivity" />
+        <activity android:name=".Buyer.ProductDetailsActivity" />
+        <activity android:name=".Buyer.SettingsActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Buyer.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin.AdminCategoryActivity" />
         <activity android:name=".Admin.AdminAddNewProductActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Buyer.RegisterActivity" />
+        <activity android:name=".Buyer.LoginActivity" />
+        <activity android:name=".Buyer.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
