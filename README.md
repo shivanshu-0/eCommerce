@@ -1,4 +1,4 @@
-#eCommerce
+# eCommerce
 
 An android based app in which user can purchase different products.
 
@@ -12,7 +12,7 @@ This app uses Fireabase services to store, authenticate and manage user, seller 
  * Once admin verifies the seller the seller can then add products category wise which are initially unapproved, when the
     admin approves the product that product is visible on user's home page.
  
- *The seller can change the details of the product like price and description and even delete the product if it is no longer available.
+ * The seller can change the details of the product like price and description and even delete the product if it is no longer available.
   
   * Admin can view the order history of a user.
   
